@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="
+ 	http://www.springframework.org/schema/context 
+ 	http://www.springframework.org/schema/context/spring-context.xsd
+    http://www.springframework.org/schema/util
+    http://www.springframework.org/schema/util/spring-util.xsd
+    http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<context:component-scan base-package="com.ahm.ngt.support.enrollment.service" />
+	<bean id="messageFactory" class="org.springframework.ws.soap.saaj.SaajSoapMessageFactory">
+		<property name="soapVersion">
+			<util:constant static-field="org.springframework.ws.soap.SoapVersion.SOAP_12" />
+		</property>
+	</bean>
+
+	<bean id="marshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
+		<property name="contextPath"
+			value="com.ngt.ahm.telematicsenrollmentservice:com.honda.ngt:com.honda.ngt.vehicle:com.honda.ngt.telematics:com.honda.ngt.dealer:com.honda.global._1_0.header:com.honda.global._1_0.fault:ahm_ngt_telematicsenrollment_library.telematics" />
+	</bean>
+
+	<bean id="webServiceTemplate" class="org.springframework.ws.client.core.WebServiceTemplate">
+		<constructor-arg ref="messageFactory" />
+		<property name="marshaller" ref="marshaller"></property>
+		<property name="unmarshaller" ref="marshaller"></property>
+		<property name="messageSender">
+			<bean
+				class="org.springframework.ws.transport.http.HttpComponentsMessageSender"> 
+				<property name="credentials">
+					<bean class="org.apache.http.auth.UsernamePasswordCredentials">
+						<constructor-arg value="service_ngtus_inenrollment:Pey4U#ad$yk7ew" />
+					</bean>
+				</property>
+			</bean>
+		</property>
+		<property name="defaultUri"
+			value="http://localhost:9080/AHM_NGT_TelematicsEnrollment_MediationWeb/sca/TelematicsEnrollmentService" />
+	</bean>
+	<!-- value="http://tahmdclngawps01:9080/AHM_NGT_TelematicsEnrollment_MediationWeb/sca/TelematicsEnrollmentService" 
+		/> -->
+
+</beans>
+
