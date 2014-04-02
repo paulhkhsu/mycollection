@@ -18,8 +18,18 @@
 	</bean>
 
 	<bean id="marshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
-		<property name="contextPath"
-			value="com.ngt.ahm.telematicsenrollmentservice:com.honda.ngt:com.honda.ngt.vehicle:com.honda.ngt.telematics:com.honda.ngt.dealer:com.honda.global._1_0.header:com.honda.global._1_0.fault:ahm_ngt_telematicsenrollment_library.telematics" />
+		<property name="contextPaths">
+
+			<list>
+				<value>com.ngt.ahm.telematicsenrollmentservice</value>
+				<value>com.honda.ngt:com.honda.ngt.vehicle</value>
+				<value>com.honda.ngt.telematics</value>
+				<value>com.honda.ngt.dealer</value>
+				<value>com.honda.global._1_0.header</value>
+				<value>com.honda.global._1_0.fault</value>
+				<value>ahm_ngt_telematicsenrollment_library.telematics</value>
+			</list>
+		</property>
 	</bean>
 
 	<bean id="webServiceTemplate" class="org.springframework.ws.client.core.WebServiceTemplate">
@@ -28,7 +38,7 @@
 		<property name="unmarshaller" ref="marshaller"></property>
 		<property name="messageSender">
 			<bean
-				class="org.springframework.ws.transport.http.HttpComponentsMessageSender"> 
+				class="org.springframework.ws.transport.http.HttpComponentsMessageSender">
 				<property name="credentials">
 					<bean class="org.apache.http.auth.UsernamePasswordCredentials">
 						<constructor-arg value="service_ngtus_inenrollment:Pey4U#ad$yk7ew" />
