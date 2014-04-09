@@ -1,4 +1,5 @@
 package com.ahm.ngt.support.enrollment.dto;
+
 /**
  * @author Paul Hsu
  *
@@ -6,11 +7,10 @@ package com.ahm.ngt.support.enrollment.dto;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 
-public abstract class DtoBase{
+public abstract class DtoBase {
 
 	public String toString() {
-        return ToStringBuilder.reflectionToString(this,
-                ToStringStyle.MULTI_LINE_STYLE);
-    }
+		return ToStringBuilder.reflectionToString(this,
+				ToStringStyle.MULTI_LINE_STYLE);
+	}
 }
-

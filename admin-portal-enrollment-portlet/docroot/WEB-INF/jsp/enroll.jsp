@@ -1,10 +1,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<%@ taglib uri="http://java.sun.com/portlet_2_0" prefix="portlet"%>
-<%@ taglib uri="http://liferay.com/tld/aui" prefix="aui"%>
-<%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui"%>
-<%@ page import="com.liferay.portal.kernel.util.ParamUtil"%>
-<%@ page import="com.liferay.portal.kernel.util.Validator"%>
-<%@ page import="javax.portlet.PortletPreferences"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="portlet" uri="http://java.sun.com/portlet_2_0"%>
+<%@ taglib prefix="aui" uri="http://liferay.com/tld/aui"%>
+<%@ taglib prefix="liferay-ui" uri="http://liferay.com/tld/ui"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <c:set var="context" value="${pageContext.request.contextPath}" />
@@ -28,7 +26,7 @@
 		<div class="div-title-center">Telematics Enrollment</div>
 
 		<br>
-		<form id="enrollform" action="${next}" method="post">
+		<form:form commandName="dto" id="enrollform" action="${next}" method="post">
 			<input type="hidden" name="vin" value="${dto.vin}"> <input
 				type="hidden" name="make" value="${dto.make}"> <input
 				type="hidden" name="model" value="${dto.model}"> <input
@@ -38,8 +36,8 @@
 			<input type="hidden" name="colorDesc" value="${dto.colorDesc}">
 			<input type="hidden" name="enrollmentSalesType" value="Individual">
 			<input type="hidden" name="enrollmentStatus" value="PENDING">
-			<input type="hidden" name="agentFirstName" value="${agentFirstName}">
-			<input type="hidden" name="agentLastName" value="${agentLastName}">
+			<input type="hidden" name="salesPersonFirstName" value="${agentFirstName}">
+			<input type="hidden" name="salesPersonLastName" value="${agentLastName}">
 			<div class="div-title-left">Vehicle Information</div>
 			<div class="div-table-box">
 				<table>
@@ -193,7 +191,7 @@
 				</a> &nbsp;&nbsp;&nbsp; <input type="submit" id="submit" value="Next">
 			</div>
 
-		</form>
+		</form:form>
 	</div>
 </body>
 </html>

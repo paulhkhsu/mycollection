@@ -13,8 +13,7 @@
 	<context:annotation-config />
 	
 	<context:component-scan base-package="com.ahm.ngt.support.enrollment.service" />
-    <context:component-scan base-package="com.ahm.ngt.support.enrollment.service" />
-	
+ 	
 	<bean class="org.springframework.web.portlet.mvc.annotation.DefaultAnnotationHandlerMapping" />
 
 	<bean class="com.ahm.ngt.support.enrollment.controller.EnrollmentController" />

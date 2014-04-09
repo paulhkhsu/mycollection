@@ -1,9 +1,7 @@
-<%@ taglib uri="http://java.sun.com/portlet_2_0" prefix="portlet"%>
-<%@ taglib uri="http://liferay.com/tld/aui" prefix="aui"%>
-<%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui"%>
-<%@ page import="com.liferay.portal.kernel.util.ParamUtil"%>
-<%@ page import="com.liferay.portal.kernel.util.Validator"%>
-<%@ page import="javax.portlet.PortletPreferences"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="portlet" uri="http://java.sun.com/portlet_2_0"%>
+<%@ taglib prefix="aui" uri="http://liferay.com/tld/aui"%>
+<%@ taglib prefix="liferay-ui" uri="http://liferay.com/tld/ui"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <c:set var="context" value="${pageContext.request.contextPath}" />
@@ -160,7 +158,7 @@
 		</div>
 		<br>
 		<div class="div-table-center">
-			<form action="${enroll}" method="post">
+			<form:form commandName="dto" action="${enroll}" method="post">
 				<input type="hidden" name="vin" value="${dto.vin}"> <input
 					type="hidden" name="make" value="${dto.make}"> <input
 					type="hidden" name="model" value="${dto.model}"> <input
@@ -175,7 +173,7 @@
 					value="${dto.enrollmentStatus}"> <a href="${backVinPage}"><button
 						type="button">Back</button></a> &nbsp;&nbsp;&nbsp; <input
 					type="submit" name="enroll" value="Change of Ownership">
-			</form>
+			</form:form>
 		</div>
 	</div>
 </body>
