@@ -37,7 +37,7 @@ public class CommentController {
 	public CommentDTO add(@Valid @RequestBody CommentDTO comment) throws MyException {
 		LOGGER.debug("Received comment: {}", comment);
 		if(comment.getText().equalsIgnoreCase("bad"))
-			throw new MyException("exception test");
+			throw new MyException("my exception test");
 		return comment;
 	}
 }
