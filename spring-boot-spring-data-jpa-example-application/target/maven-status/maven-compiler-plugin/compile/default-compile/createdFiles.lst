@@ -1,0 +1,9 @@
+net\javabeat\spring\data\Application.class
+net\javabeat\spring\data\service\BookServiceImpl.class
+net\javabeat\spring\data\service\BookOwnRepository.class
+net\javabeat\spring\data\service\BookService.class
+net\javabeat\spring\data\service\BookQueryRepositoryExample.class
+net\javabeat\spring\data\service\BookRepository.class
+net\javabeat\spring\data\web\BooksController.class
+net\javabeat\spring\data\domain\Book.class
+net\javabeat\spring\data\service\BookNamedQueryRepositoryExample.class
