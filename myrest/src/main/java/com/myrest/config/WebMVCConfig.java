@@ -29,7 +29,7 @@ import com.myrest.interceptor.LoggingInterceptor;
 @Configuration
 @PropertySource("classpath:application.properties")
 @EnableWebMvc
-@ComponentScan(basePackages = { "com.myrest.service, com.myrest.controller, com.myrest.handler" })
+@ComponentScan(basePackages = { "com.myrest.service, com.myrest.controller, com.myrest.webcontroller, com.myrest.handler" })
 public class WebMVCConfig extends WebMvcConfigurerAdapter {
 	static private final Logger log = LogManager.getLogger(WebMVCConfig.class
 			.getName());

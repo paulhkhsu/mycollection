@@ -3,6 +3,7 @@ package com.myrest.config;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.support.ResourceBundleMessageSource;
@@ -11,6 +12,7 @@ import org.springframework.context.support.ResourceBundleMessageSource;
  * @author Paul Hsu
  */
 @Configuration
+@ComponentScan(basePackages = { "com.myrest.validation" })
 @Import({ WebMVCConfig.class, DBConfig.class })
 public class AppMainConfig {
 	static private final Logger log = LogManager.getLogger(AppMainConfig.class

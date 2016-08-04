@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -47,7 +48,9 @@ public class EmployeeController {
 		log.debug(emp.getName());
 		return emp;
 	}
-
+ 
+	//headers="Accept=application/xml, application/json"
+	//@RequestHeader(value="Accept",defaultValue="test", required=false) String accept
 	@RequestMapping(value = "/rest/employee", method = RequestMethod.POST)
 	@ResponseBody
 	public Employee add(@Valid @RequestBody Employee emp) throws RecordNotFoundException {
