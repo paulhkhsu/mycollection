@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.myrest.exception.RecordNotFoundException;
@@ -24,7 +25,7 @@ import com.myrest.service.EmployeeService;
 /**
  * @author Paul Hsu
  */
-@Controller
+@RestController
 public class EmployeeController {
 
 	static private final Logger log = LogManager.getLogger(EmployeeController.class

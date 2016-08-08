@@ -10,7 +10,7 @@
 <h1>Home page</h1>
 <p>
 Welcome to "Employee application".<br/>
-<i>Menu</i><br/>
+<i>${message}</i><br/>
 <a href="${pageContext.request.contextPath}/employee/create.html">Create a new employee</a><br/>
 <a href="${pageContext.request.contextPath}/employee/list.html">View all employees</a><br/>
 </p>
