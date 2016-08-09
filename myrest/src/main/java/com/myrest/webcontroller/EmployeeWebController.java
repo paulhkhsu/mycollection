@@ -5,6 +5,8 @@ import java.util.Map;
 
 import javax.validation.Valid;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,6 +23,7 @@ import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.myrest.controller.EmployeeController;
 import com.myrest.exception.RecordNotFoundException;
 import com.myrest.pojo.Employee;
 import com.myrest.service.EmployeeService;
@@ -30,24 +33,24 @@ import com.myrest.validation.EmployeeValidator;
 @RequestMapping(value = "/employee")
 public class EmployeeWebController extends WebMvcConfigurerAdapter {
 
+	static private final Logger log = LogManager
+			.getLogger(EmployeeWebController.class.getName());
 	@Autowired
 	private EmployeeService employeeService;
 
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
 	public String newEmployeePage(Model model) {
-		System.out.println("create get");
 		model.addAttribute("employee", new Employee());
 		return "employee-new";
 	}
 
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	public String createNewEmployee(@ModelAttribute @Valid Employee employee,
-			BindingResult result, final RedirectAttributes redirectAttributes,
-			Map<String, Object> model) {
+			BindingResult result, final RedirectAttributes redirectAttributes) {
 
-		if (result.hasErrors()) 
+		if (result.hasErrors())
 			return "employee-new";
-		
+
 		employeeService.create(employee);
 		String message = "New employee " + employee.getName()
 				+ " was successfully created.";
@@ -64,30 +67,12 @@ public class EmployeeWebController extends WebMvcConfigurerAdapter {
 	}
 
 	@RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
-	public String editShopPage(@PathVariable Integer id,
-			Model model) {
+	public String editShopPage(@PathVariable Integer id, Model model) {
 		Employee emp = employeeService.findById(id);
 		model.addAttribute("employee", emp);
 		return "employee-edit";
 	}
 
-//	@RequestMapping(value = "/edit/{id}", method = RequestMethod.POST)
-//	public ModelAndView editShop(@ModelAttribute @Valid Employee emp,
-//			BindingResult result, @PathVariable Integer id,
-//			final RedirectAttributes redirectAttributes)
-//			throws RecordNotFoundException {
-//
-//		if (result.hasErrors())
-//			return new ModelAndView("employee-edit");
-//
-//		ModelAndView mav = new ModelAndView("redirect:/index.html");
-//		String message = "Employee was successfully updated.";
-//
-//		employeeService.update(emp);
-//
-//		redirectAttributes.addFlashAttribute("message", message);
-//		return mav;
-//	}
 	@RequestMapping(value = "/edit/{id}", method = RequestMethod.POST)
 	public String editShop(@ModelAttribute @Valid Employee employee,
 			BindingResult result, @PathVariable Integer id,
@@ -97,13 +82,14 @@ public class EmployeeWebController extends WebMvcConfigurerAdapter {
 		if (result.hasErrors())
 			return "employee-edit";
 
-
 		employeeService.update(employee);
 
-		String message = "Employee " + id.toString() + " was successfully updated.";
+		String message = "Employee " + id.toString()
+				+ " was successfully updated.";
 		redirectAttributes.addFlashAttribute("message", message);
 		return "redirect:/index.html";
 	}
+
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
 	public String deleteShop(@PathVariable Integer id,
 			final RedirectAttributes redirectAttributes)

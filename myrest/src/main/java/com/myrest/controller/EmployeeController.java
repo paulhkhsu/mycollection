@@ -36,9 +36,7 @@ public class EmployeeController {
 	@RequestMapping(value = "/rest/employee", method = RequestMethod.GET)
 	@ResponseBody
 	public List<Employee> getAll() {
-		log.debug("getAll");
 		List<Employee> l = employeeService.findAll();
-		log.debug(l.get(0).getName());
 		return l;
 	}
 	
@@ -61,4 +59,27 @@ public class EmployeeController {
 			throw new RecordNotFoundException("Employee not found");
 		return emp;
 	}
+	
+	@RequestMapping(value = "/rest/employee", method = RequestMethod.PUT)
+	@ResponseBody
+	public Employee update(@Valid @RequestBody Employee emp) throws RecordNotFoundException {
+		log.debug("Received employee: {}", emp);
+		Employee emp1 = employeeService.findById(emp.getId());
+		if(null == emp1)
+			throw new RecordNotFoundException("Employee not found");
+		employeeService.update(emp);
+		return emp;
+	}
+
+	
+	@RequestMapping(value = "/rest/employee/{id}", method = RequestMethod.DELETE)
+	@ResponseBody
+	public Employee delete(@PathVariable("id") int id) throws RecordNotFoundException {
+		Employee emp = employeeService.findById(id);
+		if(null == emp)
+			throw new RecordNotFoundException("Employee not found");
+		employeeService.delete(id);
+		return emp;
+	}
+
 }
