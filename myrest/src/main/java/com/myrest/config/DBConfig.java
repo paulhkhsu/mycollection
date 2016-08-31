@@ -8,6 +8,7 @@ import javax.sql.DataSource;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.ejb.HibernatePersistence;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -35,6 +36,25 @@ public class DBConfig {
 	private static final String PROPERTY_NAME_HIBERNATE_DIALECT = "hibernate.dialect";
 	private static final String PROPERTY_NAME_HIBERNATE_SHOW_SQL = "hibernate.show_sql";
 	private static final String ENTITYMANAGER_PACKAGES_TO_SCAN = "com.myrest.pojo";
+
+	// can use this instead of Environment
+	@Value("${db.driver}")
+	private String dbDriver;
+
+	@Value("${db.password}")
+	private String dbPassword;
+
+	@Value("${db.url}")
+	private String dbUrl;
+
+	@Value("${db.username}")
+	private String dbUsername;
+
+	@Value("${hibernate.dialect}")
+	private String hibernateDialect;
+
+	@Value("${hibernate.show_sql}")
+	private String hibernateShowsql;
 
 	@Resource
 	private Environment env;
@@ -66,11 +86,12 @@ public class DBConfig {
 
 	// @Bean
 	private DataSource dataSource() {
-		log.debug("dataSource");
+		log.debug("dataSource " + dbDriver);
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 
-		dataSource.setDriverClassName(env
-				.getRequiredProperty(PROPERTY_NAME_DATABASE_DRIVER));
+//		dataSource.setDriverClassName(env
+//				.getRequiredProperty(PROPERTY_NAME_DATABASE_DRIVER));
+		dataSource.setDriverClassName(dbDriver);
 		dataSource.setUrl(env.getRequiredProperty(PROPERTY_NAME_DATABASE_URL));
 		dataSource.setUsername(env
 				.getRequiredProperty(PROPERTY_NAME_DATABASE_USERNAME));
