@@ -33,6 +33,9 @@ public class EmployeeController {
 	@Autowired
 	private EmployeeService employeeService;
 
+	// the way to control version
+	//@RequestMapping(value = "/rest/employee", method = RequestMethod.GET, produces={"application/vnd.company.app-1.0+json","application/vnd.company.app-1.0+xml"})
+
 	@RequestMapping(value = "/rest/employee", method = RequestMethod.GET)
 	@ResponseBody
 	public List<Employee> getAll() {
