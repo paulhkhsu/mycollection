@@ -36,6 +36,7 @@ public class EmployeeController {
 	// the way to control version
 	//@RequestMapping(value = "/rest/employee", method = RequestMethod.GET, produces={"application/vnd.company.app-1.0+json","application/vnd.company.app-1.0+xml"})
 
+	// if we return List the application/xml won't work, need anohter java to return list see VersionContoller.java
 	@RequestMapping(value = "/rest/employee", method = RequestMethod.GET)
 	@ResponseBody
 	public List<Employee> getAll() {
