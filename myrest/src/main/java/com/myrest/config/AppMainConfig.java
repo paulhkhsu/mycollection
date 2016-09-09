@@ -12,7 +12,7 @@ import org.springframework.context.support.ResourceBundleMessageSource;
  * @author Paul Hsu
  */
 @Configuration
-@ComponentScan(basePackages = { "com.myrest.validation" })
+@ComponentScan(basePackages = { "com.myrest.validation", "com.myrest.profiledemo" })
 @Import({ WebMVCConfig.class, DBConfig.class })
 public class AppMainConfig {
 	static private final Logger log = LogManager.getLogger(AppMainConfig.class

@@ -26,6 +26,8 @@ public class AppInitConfig implements WebApplicationInitializer {
 			throws ServletException {
 		log.debug("onStartup");
 		AnnotationConfigWebApplicationContext rootContext = new AnnotationConfigWebApplicationContext();
+		//Enable a "live" profile
+		rootContext.getEnvironment().setActiveProfiles("dev");
 		rootContext.register(AppMainConfig.class);
 
 		ServletRegistration.Dynamic dispatcher = servletContext.addServlet(
