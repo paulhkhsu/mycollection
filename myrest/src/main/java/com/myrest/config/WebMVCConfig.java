@@ -54,7 +54,7 @@ public class WebMVCConfig extends WebMvcConfigurerAdapter {
 	}
 
 	@Bean
-	public UrlBasedViewResolver setupViewResolver() {
+	public UrlBasedViewResolver urlBasedViewResolver() {
 		log.debug("setupViewResolver");
 		UrlBasedViewResolver resolver = new UrlBasedViewResolver();
 		resolver.setPrefix("/WEB-INF/pages/");

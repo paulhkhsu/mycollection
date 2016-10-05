@@ -1,4 +1,4 @@
-package com.myrest.app;
+package com.myrest.web;
 
 
 import org.junit.Before;
@@ -24,18 +24,23 @@ import com.myrest.config.AppMainConfig;
 @WebAppConfiguration
 @ContextConfiguration(classes = { AppInitConfig.class, AppMainConfig.class}, loader = AnnotationConfigWebContextLoader.class)
 @ActiveProfiles("dev")
-public class AppTest {
+public class WebTest {
 	private MockMvc mockMvc;
 
 	@Autowired
 	protected WebApplicationContext webApplicationContext;
 
+	@Before
+	public void setup() {
+		mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext)
+				.build();
+	}
+
 	@Test
-	public void dumpBeans() throws Exception {
-		
-		String[] bs = webApplicationContext.getBeanDefinitionNames();
-		for(String s: bs)
-			System.out.println(s);
+	public void simple() throws Exception {
+		mockMvc.perform(MockMvcRequestBuilders.get("/employee/list"))
+				.andExpect(MockMvcResultMatchers.status().isOk())
+				.andExpect(MockMvcResultMatchers.view().name("employee-list"));
 		
 	}
 }
