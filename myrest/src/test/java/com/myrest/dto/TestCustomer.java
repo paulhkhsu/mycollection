@@ -3,6 +3,9 @@ package com.myrest.dto;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+
 public class TestCustomer {
 
 	public static void main(String[] args) throws Exception {
@@ -23,6 +26,11 @@ public class TestCustomer {
 		customer.setContactInfo(ph);
 
 		marshaller.marshal(customer, System.out);
+		
+		ObjectMapper mapper = new ObjectMapper();
+		mapper.configure(SerializationFeature.WRAP_ROOT_VALUE, true);
+		String jsonInString = mapper.writeValueAsString(customer);
+		System.out.println(jsonInString);
 
 	}
 }

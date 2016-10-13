@@ -13,7 +13,7 @@
 		<log4j2.version>2.0.2</log4j2.version>
 		<hibernate.version>4.2.4.Final</hibernate.version>
 
-		<skipTests>false</skipTests>
+		<skipTests>true</skipTests>
 	</properties>
 
 	<dependencies>

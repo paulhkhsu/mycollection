@@ -13,10 +13,14 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import com.fasterxml.jackson.annotation.JsonRootName;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+
 @Entity
 @Table(name = "employee")
 @XmlRootElement(name = "employee")
 @XmlAccessorType(XmlAccessType.FIELD)
+@JsonRootName(value="emp")  // need Jackson2ObjectMapperBuilder to work 
 public class Employee {
 
 	@Id
