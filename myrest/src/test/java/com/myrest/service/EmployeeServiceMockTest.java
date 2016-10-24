@@ -31,8 +31,10 @@ public class EmployeeServiceMockTest {
 	@Mock
 	private EmployeeDao employeeDao;
 
+	
 	@InjectMocks
 	private EmployeeService employeeService = new EmployeeServiceImpl();
+	// private EmployeeService employeeService; interface declare not working because of no DAO field define.
 
 	@Before
 	public void setup() {
