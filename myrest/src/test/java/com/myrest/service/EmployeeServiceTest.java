@@ -1,4 +1,4 @@
-package com.myrest.dao;
+package com.myrest.service;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -12,22 +12,24 @@ import org.springframework.test.context.web.WebAppConfiguration;
 
 import com.myrest.config.AppInitConfig;
 import com.myrest.config.AppMainConfig;
+import com.myrest.pojo.Employee;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
 @ContextConfiguration(classes = { AppInitConfig.class, AppMainConfig.class }, loader = AnnotationConfigWebContextLoader.class)
 @ActiveProfiles("dev")
-public class DaoTestDemo {
+public class EmployeeServiceTest {
 
 	@Autowired
-	private EmployeeDao employeeDao;
+	private EmployeeService employeeService;
 
 	@Before
 	public void setup() {
 	}
 
 	@Test
-	public void testOrderService() {
-		System.out.println(employeeDao.count());
+	public void testfindById() {
+		Employee e = employeeService.findById(16);
+		System.out.println(e.getName());
 	}
 }
